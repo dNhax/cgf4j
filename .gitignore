@@ -2,4 +2,4 @@ target/
 .settings/
 .project
 .classpath
-**/src/main/xtend-gen/
+cgf4j-example-generators/src/main/xtend-gen/
