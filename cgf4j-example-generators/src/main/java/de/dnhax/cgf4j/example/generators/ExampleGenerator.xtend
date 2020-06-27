@@ -1,7 +1,9 @@
 package de.dnhax.cgf4j.example.generators
 
 import de.dnhax.cgf4j.api.generator.FileGenerator
+import de.dnhax.cgf4j.api.generator.GeneratorTypes
 
+@GeneratorTypes("main")
 class ExampleGenerator extends FileGenerator {
 
   override protected getFileRelativePath() {

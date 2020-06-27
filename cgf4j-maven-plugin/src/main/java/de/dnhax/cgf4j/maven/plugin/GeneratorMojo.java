@@ -1,5 +1,7 @@
 package de.dnhax.cgf4j.maven.plugin;
 
+import java.util.List;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -15,9 +17,12 @@ public class GeneratorMojo extends AbstractMojo {
   @Parameter(defaultValue = "${project.build.directory}/generated-sources")
   private String targetPath;
 
+  @Parameter
+  private List<String> generatorTypes;
+
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
-    Generator generator = new Generator(targetPath);
+    Generator generator = new Generator(targetPath, generatorTypes);
     generator.generate();
   }
 
