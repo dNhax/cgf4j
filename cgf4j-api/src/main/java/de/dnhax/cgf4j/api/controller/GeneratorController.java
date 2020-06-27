@@ -10,11 +10,15 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.dnhax.cgf4j.api.generator.FileGenerator;
 import de.dnhax.cgf4j.api.generator.GeneratorTypes;
 
 public class GeneratorController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(GeneratorController.class);
 
   @Inject
   @Any
@@ -29,8 +33,13 @@ public class GeneratorController {
 
   private List<FileGenerator> getMatchingGenerators(List<String> generatorTypes) {
     Stream<FileGenerator> stream = getStream();
-    return CollectionUtils.isEmpty(generatorTypes) ? stream.collect(Collectors.toList())
-        : stream.filter(generator -> matchesGeneratorType(generator, generatorTypes)).collect(Collectors.toList());
+    if (CollectionUtils.isEmpty(generatorTypes)) {
+      LOGGER.info("No 'generatorTypes' specified, using all available generators.");
+      return stream.collect(Collectors.toList());
+    } else {
+      LOGGER.info("Using generators with types {}.", generatorTypes);
+      return stream.filter(generator -> matchesGeneratorType(generator, generatorTypes)).collect(Collectors.toList());
+    }
   }
 
   private Stream<FileGenerator> getStream() {
