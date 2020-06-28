@@ -13,7 +13,7 @@ Example generators can be found inside the module `cgf4j-example-generators`. Th
 
 ## How to use generators
 
-Example generators can be found inside the module `cgf4j-example-usage`.
+Example usage can be found inside the module `cgf4j-example-usage`.
 
 1. Add the `cgf4j-maven-plugin` to your build and include the dependency to your generator module
 2. Configure the `targetPath` and optionally the `generatorTypes` to use
